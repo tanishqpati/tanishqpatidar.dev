@@ -19,10 +19,17 @@ export function readPosts(): PostMeta[] {
     const slug = file.replace(/\.mdx$/, "");
     const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
     const { data } = matter(raw);
+    const rawDate = data.date;
+    const isoDate =
+      rawDate instanceof Date
+        ? rawDate.toISOString().slice(0, 10)
+        : rawDate
+          ? String(rawDate)
+          : "";
     return {
       slug,
       title: String(data.title ?? slug),
-      date: String(data.date ?? ""),
+      date: isoDate,
       summary: String(data.summary ?? ""),
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     } satisfies PostMeta;
