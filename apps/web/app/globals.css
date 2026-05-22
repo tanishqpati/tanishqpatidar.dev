@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@source "../app/**/*.{ts,tsx,mdx}";
+@source "../components/**/*.{ts,tsx}";
+@source "../content/**/*.mdx";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  @apply bg-white text-zinc-900 antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-zinc-950 text-zinc-100;
+  }
+}
+
+/* MDX prose */
+.prose {
+  @apply max-w-none;
+}
+.prose h1 {
+  @apply text-3xl font-bold tracking-tight mt-8 mb-4;
+}
+.prose h2 {
+  @apply text-2xl font-semibold tracking-tight mt-8 mb-3;
+}
+.prose h3 {
+  @apply text-xl font-semibold mt-6 mb-2;
+}
+.prose p {
+  @apply leading-7 my-4;
+}
+.prose ul {
+  @apply list-disc pl-6 my-4;
+}
+.prose ol {
+  @apply list-decimal pl-6 my-4;
+}
+.prose li {
+  @apply my-1;
+}
+.prose blockquote {
+  @apply border-l-4 border-zinc-300 dark:border-zinc-700 pl-4 italic my-4;
+}
+.prose code:not(pre code) {
+  @apply bg-zinc-100 dark:bg-zinc-800 rounded px-1.5 py-0.5 text-sm;
+}
+
+/* rehype-pretty-code */
+.prose pre {
+  @apply rounded-lg p-4 overflow-x-auto my-6 text-sm bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800;
+}
+.prose pre > code {
+  @apply grid;
+}
+.prose pre [data-line] {
+  @apply px-0;
+}
+[data-rehype-pretty-code-figure] pre {
+  @apply font-mono;
+}
+
+@media (prefers-color-scheme: dark) {
+  code[data-theme="dark"],
+  pre[data-theme="dark"],
+  [data-theme="dark"] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+}
+
+code[data-theme="light"] span,
+pre[data-theme="light"] span {
+  color: var(--shiki-light);
+}
