@@ -1,0 +1,27 @@
+---
+title: How this site is built
+date: 2026-05-20
+summary: Next.js 15, MDX, Tailwind v4, Turborepo — and the path to AWS.
+tags: [meta, architecture]
+---
+
+Phase 1 of this site runs on Vercel. Later phases migrate to AWS: S3 + CloudFront for origin and CDN, Lambda@Edge for dynamic features, DynamoDB for state, and AWS CDK as the source of truth for infrastructure.
+
+## Today's stack
+
+- **Next.js 15** (App Router, React Server Components)
+- **TypeScript**, everywhere
+- **Tailwind CSS v4** — CSS-first config, zero JS-side config file
+- **`@next/mdx`** + **`gray-matter`** for posts and the resume
+- **`rehype-pretty-code`** + **Shiki** for build-time syntax highlighting
+- **Turborepo** workspaces so future tools or apps slot in cleanly
+
+## What's next
+
+- Migrate the build output to S3 with a CloudFront distribution in front
+- Add Lambda@Edge for view counts (DynamoDB) and a newsletter signup (SES)
+- Move all infra into AWS CDK so the entire setup lives in this repo
+- Add a GitHub Actions pipeline: typecheck → lint → test → build → deploy
+- Ship an AI semantic search across posts as a Lambda + LLM API endpoint
+
+The whole point of the roadmap is to ship fast first, then re-platform once there's something real to host.

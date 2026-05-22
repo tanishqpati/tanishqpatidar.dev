@@ -1,0 +1,35 @@
+---
+title: Hello, world
+date: 2026-05-23
+summary: Why I built this site, and what I plan to write about.
+tags: [meta, intro]
+---
+
+This is the first post on tanishqpatidar.dev. The plan is to write about what I'm building — small experiments, deeper notes on architecture, and the occasional opinion piece on developer tooling.
+
+## Why a custom site
+
+I wanted a place that's mine — not a Medium feed, not a Notion page. Something I can version-control, tweak end to end, and turn into a small lab for trying things.
+
+Some of those things will become entries in `/tools`. The whole site is structured so that adding a tool is just dropping a `page.tsx` under `app/tools/`.
+
+## A code sample
+
+Here's a tiny TypeScript function, just to verify the syntax highlighter does its job:
+
+```ts
+type PostMeta = {
+  slug: string;
+  title: string;
+  date: string;
+  tags: string[];
+};
+
+export function recent(posts: PostMeta[], n = 3): PostMeta[] {
+  return [...posts]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, n);
+}
+```
+
+That's it. More to come.
