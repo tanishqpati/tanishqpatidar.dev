@@ -4,7 +4,12 @@ import { PostCard } from "@/components/post-card";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Posts.",
+  description: "Notes on backend, event-driven systems, AI integrations, and engineering practice.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Blog — Tanishq Patidar",
+    url: "/blog",
+  },
 };
 
 export default function BlogIndexPage() {
@@ -12,19 +17,22 @@ export default function BlogIndexPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold tracking-tight mb-2">Blog</h1>
-      <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-        Notes on what I&apos;m building.
+      <p className="text-sm text-zinc-500">
+        <span className="accent">$</span> ls /blog
       </p>
-      {posts.length === 0 ? (
-        <p className="text-sm text-zinc-500">No posts yet.</p>
-      ) : (
-        <div>
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      )}
+      <h1 className="mt-1 text-2xl font-semibold tracking-tight">blog</h1>
+      <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 font-sans">
+        {posts.length} {posts.length === 1 ? "entry" : "entries"} · newest
+        first.
+      </p>
+
+      <div className="mt-8">
+        {posts.length === 0 ? (
+          <p className="text-sm text-zinc-500">{"// no posts yet"}</p>
+        ) : (
+          posts.map((post) => <PostCard key={post.slug} post={post} />)
+        )}
+      </div>
     </div>
   );
 }
