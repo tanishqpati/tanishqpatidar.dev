@@ -6,7 +6,9 @@
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-accent: #86efac;
+  --color-accent-dim: #4ade80;
 }
 
 :root {
@@ -14,7 +16,7 @@
 }
 
 html {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
 }
 
 body {
@@ -27,21 +29,68 @@ body {
   }
 }
 
-/* MDX prose */
+/* terminal accent */
+.accent {
+  color: var(--color-accent-dim);
+}
+@media (prefers-color-scheme: dark) {
+  .accent {
+    color: var(--color-accent);
+  }
+}
+
+/* link styles in mono chrome */
+.tlink {
+  @apply transition-colors;
+}
+.tlink:hover {
+  color: var(--color-accent-dim);
+}
+@media (prefers-color-scheme: dark) {
+  .tlink:hover {
+    color: var(--color-accent);
+  }
+}
+
+/* CSS-only cursor blink */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor {
+  display: inline-block;
+  width: 0.55ch;
+  background: currentColor;
+  animation: blink 1s steps(2, start) infinite;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+
+/* dotted leader between two inline elements */
+.leader {
+  display: inline-block;
+  flex: 1;
+  border-bottom: 1px dashed currentColor;
+  opacity: 0.3;
+  margin: 0 0.5rem;
+  transform: translateY(-0.25rem);
+}
+
+/* MDX prose — body switches back to sans for readability */
 .prose {
-  @apply max-w-none;
+  @apply max-w-none font-sans;
 }
 .prose h1 {
-  @apply text-3xl font-bold tracking-tight mt-8 mb-4;
+  @apply text-3xl font-semibold tracking-tight mt-8 mb-4;
 }
 .prose h2 {
-  @apply text-2xl font-semibold tracking-tight mt-8 mb-3;
+  @apply text-xl font-semibold tracking-tight mt-10 mb-3 pb-1 border-b border-dashed border-zinc-300 dark:border-zinc-800;
 }
 .prose h3 {
-  @apply text-xl font-semibold mt-6 mb-2;
+  @apply text-base font-semibold mt-6 mb-2;
 }
 .prose p {
-  @apply leading-7 my-4;
+  @apply leading-7 my-4 text-[15px];
 }
 .prose ul {
   @apply list-disc pl-6 my-4;
@@ -50,27 +99,44 @@ body {
   @apply list-decimal pl-6 my-4;
 }
 .prose li {
-  @apply my-1;
+  @apply my-1.5 text-[15px] leading-7;
 }
 .prose blockquote {
-  @apply border-l-4 border-zinc-300 dark:border-zinc-700 pl-4 italic my-4;
+  @apply border-l-2 border-zinc-300 dark:border-zinc-700 pl-4 italic my-4;
+}
+.prose strong {
+  @apply font-semibold text-zinc-900 dark:text-zinc-100;
+}
+.prose em {
+  @apply text-zinc-600 dark:text-zinc-400;
+}
+.prose a {
+  @apply underline underline-offset-4 decoration-zinc-400 hover:decoration-current transition-colors;
+}
+.prose a:hover {
+  color: var(--color-accent-dim);
+}
+@media (prefers-color-scheme: dark) {
+  .prose a:hover {
+    color: var(--color-accent);
+  }
 }
 .prose code:not(pre code) {
-  @apply bg-zinc-100 dark:bg-zinc-800 rounded px-1.5 py-0.5 text-sm;
+  @apply font-mono bg-zinc-100 dark:bg-zinc-900 rounded px-1.5 py-0.5 text-[13px];
+}
+.prose hr {
+  @apply border-0 border-t border-dashed border-zinc-300 dark:border-zinc-800 my-8;
 }
 
 /* rehype-pretty-code */
 .prose pre {
-  @apply rounded-lg p-4 overflow-x-auto my-6 text-sm bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800;
+  @apply rounded-md p-4 overflow-x-auto my-6 text-[13px] bg-zinc-50 dark:bg-zinc-900 border border-dashed border-zinc-300 dark:border-zinc-800 font-mono;
 }
 .prose pre > code {
   @apply grid;
 }
 .prose pre [data-line] {
   @apply px-0;
-}
-[data-rehype-pretty-code-figure] pre {
-  @apply font-mono;
 }
 
 @media (prefers-color-scheme: dark) {
