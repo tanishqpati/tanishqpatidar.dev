@@ -1,40 +1,76 @@
 ## Tanishq Patidar
 
-Engineer · India · [tanishq.patidar@example.com](mailto:tanishq.patidar@example.com)
-
-> Replace this MDX with your real resume content. The page also serves a downloadable PDF at `/resume.pdf` — drop the file at `apps/web/public/resume.pdf`.
+[tanishq.pati@gmail.com](mailto:tanishq.pati@gmail.com) · +91-8770216187 · [LinkedIn](https://linkedin.com/in/) · [GitHub](https://github.com/)
 
 ---
 
 ### Summary
 
-One or two sentences. What you do, what you're known for, what you're optimizing for next.
+Backend-focused full-stack engineer with 2.5+ years of experience designing event-driven architectures, building multi-tenant SaaS platforms, and shipping production systems at scale. Architected a RabbitMQ analytics pipeline processing events across 5+ consumer services and multiple brands; independently built two full-stack products (restaurant SaaS with real-time WebSocket ordering and AI voice ordering via ElevenLabs, AI storytelling platform with voice cloning). Delivered 64 tickets / 180 story points in 6 months at current role. Strong in system design, message queues, API design, caching, and security.
 
-### Experience
+### Technical Skills
 
-**Company** — *Title*  ·  *Year – Year*
+- **Languages**: TypeScript, JavaScript, Ruby, SQL, Swift, Kotlin, Java
+- **Backend**: Node.js, NestJS, Express.js, Ruby on Rails, Bun, Prisma, Mongoose
+- **Frontend**: React, Next.js (App Router), Tailwind CSS, Framer Motion, Socket.io
+- **Databases & Caching**: PostgreSQL, MongoDB, DynamoDB, Redis (Upstash), Upstash Vector
+- **Message Queues**: RabbitMQ (Topic Exchange, DLX/DLQ, Fanout, consumer architecture)
+- **Cloud & DevOps**: AWS (Lambda, S3, DynamoDB), GCP, Docker, GitHub Actions, Jenkins, CI/CD
+- **Integrations**: Razorpay, GPT-4o (function calling), ElevenLabs (Conversational AI, voice cloning, TTS), Mixpanel, CleverTap, FB Pixel, Puppeteer
 
-- Bullet about scope and impact.
-- Bullet with a concrete number.
-- Bullet about a system you owned end to end.
+### Professional Experience
 
-**Earlier Company** — *Title*  ·  *Year – Year*
+**Mosaic Wellness** — *Backend Engineer*  ·  *Oct 2025 – Present*  ·  India
 
-- Bullet.
-- Bullet.
+- Architected an event-driven post-order analytics pipeline on RabbitMQ using Topic Exchange, replacing legacy Fanout; owned end-to-end design, documentation, naming specs, implementation, and multi-brand rollout (15+ tickets, ~40 story points).
+- Built DLX/DLQ-based retry and failure-handling for all consumers with separate retry logic for OMS publish failures; implemented failure cleanup cron with alerting to ensure zero event loss.
+- Developed and deployed 5+ consumer services (Affluence, Habit, Alert, Referral, FB Pixel) with config-driven brand-wise publishing; onboarded the Health-Service-Consumer repo as the standard for post-order consumers.
+- Implemented last-payment-method persistence in cart API with Amazon Pay support, reducing checkout friction; built Tabby payment callback failure handling with fallback verification logic.
+- Migrated UTM tracking from frontend to backend (single source of truth); enriched Mixpanel and CleverTap events with warehouse SKU data; fixed UTM field-type enforcement with partial-success error handling.
+- Built configurable cancellation reasons (DB-driven, brand-specific), order priority flags for Quick Delivery Date, and initiated Quiccup shipment status migration to AWS Lambda for async processing.
+- Enforced platform security: OTP attempt rate-limiting, 15-address-per-user cap, double cashback exploit prevention, order-status validation before locker updates, and profile completeness checks in OTP flow.
+- Delivered 64 tickets totaling 180 story points across analytics, payments, order management, wallet, user profiles, and infrastructure in 6 months.
 
-### Skills
+**Josys** — *Software Engineer*  ·  *Aug 2024 – Oct 2025*  ·  Bangalore, Karnataka
 
-- **Languages**: TypeScript, Python, Go
-- **Web**: React, Next.js, Node.js
-- **Cloud**: AWS (S3, CloudFront, Lambda, DynamoDB), CDK, Terraform
-- **Data**: PostgreSQL, DynamoDB, Redis
+- Built and shipped 4+ internal SaaS tools (NestJS, Node.js, Ruby on Rails, PostgreSQL), improving engineering release workflows by 40%.
+- Developed an AWS Serverless Internal Release Tool and Cloud Cost Optimization Tool, cutting infrastructure spend by 15%.
+- Integrated APIs for 20+ third-party SaaS applications; built automated reporting pipelines using Puppeteer and Cheerio for data scraping.
+- Maintained CI/CD pipelines (GitHub Actions, Jenkins), API contracts, and production uptime across cross-functional teams.
+
+**Aeroh** — *Software Engineer*  ·  *Jul 2023 – Jul 2024*  ·  Mountain View, CA (Remote)
+
+- Built a Figma Plugin (TypeScript, React, Figma Plugin API) adopted by 10,000+ users for design-to-code workflow automation.
+- Developed production-grade iOS (Swift, SwiftUI) and Android (Kotlin, Java) applications for IoT device management and control.
+- Created responsive Next.js + Tailwind CSS landing pages, boosting early-stage user conversion rates.
+
+### Projects
+
+**Waitr** — *Multi-Tenant Restaurant Ordering SaaS*  ·  *2025 – Present*
+
+*Stack: Next.js 16, Express 5, Bun, PostgreSQL, Prisma, Socket.io, Razorpay, GPT-4o, ElevenLabs Conversational AI, Upstash Redis + Vector, TypeScript, Turborepo*
+
+- Built a production-grade multi-tenant SaaS with 12 backend service modules, 28+ REST endpoints, 9 PostgreSQL tables with composite indexes, and a Turborepo monorepo with shared TypeScript types.
+- Implemented real-time order pipeline via Socket.io with JWT-authenticated WebSocket connections; kitchen dashboard receives live order updates, waiter dashboard gets call alerts with audio notifications — zero polling.
+- Designed Redis caching strategy: menu cache (5-min TTL, cache-aside with write invalidation), cart persistence (1-hr TTL, session-keyed), refresh token JTI store for revocation.
+- Built JWT token rotation (15-min access / 14-day refresh, httpOnly cookies, JTI invalidation on each rotation); stored Razorpay secrets AES-256-CBC encrypted in DB with random IV per value; HMAC-SHA256 payment signature verification.
+- Built real-time AI voice ordering using ElevenLabs Conversational AI (STT + TTS with turn-taking and interruption handling) orchestrated with GPT-4o function calling (add_to_cart, remove_from_cart, search_menu, complete_order) over WebSocket; supports natural Hindi/English/Hinglish code-switching for Indian restaurant customers.
+- Implemented semantic menu search using Upstash Vector embeddings, enabling fuzzy voice queries like "something spicy" to return matched items regardless of exact menu item names.
+- Built GST-compliant invoice generation (CGST + SGST), sequential Indian FY numbering, and RBAC (Admin, Manager, Kitchen, Waiter) with role-enforced middleware.
+
+**Joy Tales** — *AI-Powered Kids Storytelling Platform*  ·  *2025*
+
+*Stack: Next.js 14, Express.js, GPT-4o, ElevenLabs (voice cloning + TTS), Gemini Imagen 4, MongoDB, TypeScript, NDJSON streaming*
+
+- Designed multi-step AI pipeline: GPT-4o structured story generation → ElevenLabs voice cloning + per-paragraph TTS → background sound generation → Gemini Imagen 4 illustrations → ffmpeg audio mixing — all orchestrated server-side with graceful error handling.
+- Implemented NDJSON streaming to deliver real-time generation progress to the client, avoiding 60s+ HTTP timeout failures on long AI pipelines.
+- Optimized per-story API cost to ~$0.45 (GPT-4o: $0.02, ElevenLabs TTS: $0.015, sound gen: $0.30, Imagen: $0.05); voice cloning is one-time per user, amortizing across all stories for improving unit economics.
+- Built cinematic story player with Ken Burns zoom/pan animations, word-by-word audio sync highlighting, and a 6-step creation wizard with MediaRecorder waveform visualization.
 
 ### Education
 
-**University** — *Degree, Field*  ·  *Year – Year*
+**Bachelor of Technology in Computer Science**  ·  *May 2022 – May 2026*
 
-### Links
+Lovely Professional University  ·  GPA: 9.16 / 10.0
 
-- GitHub: [github.com](https://github.com/)
-- Site: [tanishqpatidar.dev](https://tanishqpatidar.dev)
+- ISCA Finalist — Blynd selected among top 100 tech demos out of 1,000+ entries at the Indian Science Congress.
