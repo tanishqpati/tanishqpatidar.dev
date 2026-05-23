@@ -3,39 +3,30 @@ import type { PostMeta } from "@/lib/posts";
 
 export function PostCard({ post }: { post: PostMeta }) {
   return (
-    <article className="group py-5 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
+    <article className="group py-4 border-b border-dashed border-zinc-300 dark:border-zinc-800 last:border-b-0">
       <Link href={`/blog/${post.slug}`} className="block">
-        <div className="flex items-baseline justify-between gap-4">
-          <h2 className="text-lg font-medium group-hover:underline underline-offset-4">
-            {post.title}
-          </h2>
+        <div className="flex items-baseline gap-3 text-sm">
           {post.date && (
             <time
               dateTime={post.date}
-              className="text-xs text-zinc-500 shrink-0"
+              className="text-zinc-500 tabular-nums shrink-0"
             >
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
+              [{post.date}]
             </time>
           )}
+          <h2 className="text-zinc-800 dark:text-zinc-200 group-hover:underline underline-offset-4 decoration-dashed">
+            {post.title}
+          </h2>
         </div>
         {post.summary && (
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+          <p className="mt-1 ml-[6.5ch] text-sm text-zinc-500 dark:text-zinc-400">
             {post.summary}
           </p>
         )}
         {post.tags.length > 0 && (
-          <ul className="mt-2 flex flex-wrap gap-1.5">
+          <ul className="mt-1.5 ml-[6.5ch] flex flex-wrap gap-x-2 gap-y-0.5 text-xs text-zinc-500">
             {post.tags.map((tag) => (
-              <li
-                key={tag}
-                className="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
-              >
-                {tag}
-              </li>
+              <li key={tag}>#{tag}</li>
             ))}
           </ul>
         )}
