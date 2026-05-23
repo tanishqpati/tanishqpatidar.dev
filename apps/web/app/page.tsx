@@ -7,27 +7,34 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight">Tanishq Patidar</h1>
-        <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-          Engineer. I build things on the web and write about it.
+      <section className="mb-14">
+        <p className="text-sm text-zinc-500">
+          <span className="accent">&gt;</span> whoami
+        </p>
+        <h1 className="mt-1 text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+          tanishq patidar<span className="cursor" aria-hidden="true" />
+        </h1>
+        <p className="mt-4 text-[15px] leading-7 text-zinc-600 dark:text-zinc-400 font-sans">
+          Backend-focused full-stack engineer. I design event-driven systems,
+          ship multi-tenant SaaS, and write about the bits worth writing down.
         </p>
       </section>
 
       <section>
-        <div className="flex items-baseline justify-between mb-2">
-          <h2 className="text-sm font-medium uppercase tracking-wider text-zinc-500">
-            Recent posts
-          </h2>
+        <div className="flex items-baseline gap-2 mb-3 text-sm">
+          <span className="text-zinc-700 dark:text-zinc-300">
+            <span className="accent">#</span> recent
+          </span>
+          <span className="leader" aria-hidden="true" />
           <Link
             href="/blog"
-            className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+            className="tlink text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 shrink-0"
           >
-            All posts →
+            $ ls /blog →
           </Link>
         </div>
         {recent.length === 0 ? (
-          <p className="text-sm text-zinc-500 py-4">No posts yet.</p>
+          <p className="text-sm text-zinc-500 py-4">{"// no posts yet"}</p>
         ) : (
           <div>
             {recent.map((post) => (
