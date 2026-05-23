@@ -1,24 +1,32 @@
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200 dark:border-zinc-800">
-      <div className="mx-auto max-w-2xl px-6 py-6 text-sm text-zinc-500 flex items-center justify-between">
-        <span>© {new Date().getFullYear()} Tanishq Patidar</span>
+    <footer className="border-t border-dashed border-zinc-300 dark:border-zinc-800">
+      <div className="mx-auto max-w-2xl px-6 py-5 text-xs text-zinc-500 flex flex-wrap items-center justify-between gap-3">
+        <span>
+          <span className="accent select-none">$</span> echo &quot;© {new Date().getFullYear()} Tanishq Patidar&quot;
+        </span>
         <div className="flex items-center gap-4">
+          <a
+            href="mailto:tanishq.pati@gmail.com"
+            className="tlink hover:text-zinc-700 dark:hover:text-zinc-300"
+          >
+            email
+          </a>
           <a
             href="https://github.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            className="tlink hover:text-zinc-700 dark:hover:text-zinc-300"
           >
-            GitHub
+            github
           </a>
           <a
-            href="https://twitter.com/"
+            href="https://linkedin.com/in/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            className="tlink hover:text-zinc-700 dark:hover:text-zinc-300"
           >
-            Twitter
+            linkedin
           </a>
         </div>
       </div>
